@@ -1,0 +1,19 @@
+Technology
+    • Language: Go (module: c_compiler_demo)
+    • CLI: `go run ./cmd/ccdemo`
+
+Planned project layout
+    • `cmd/ccdemo/`
+        - `main.go`             — CLI entrypoint; reads example source and runs the pipeline
+    • `core/`
+        - `pipeline.go`         — orchestrates phases and formats output (colors/indent)
+        - `lexer/lexer.go`      — lexer that tokenizes the C source using ANTLR
+        - `parser/parser.go`    — parser that builds a parse tree (can use goyacc or ANTLR)
+        - `ast/ast.go`          — AST builder producing an AST (node types)
+        - `sema/sema.go`        — semantic analysis inferring types and annotating nodes
+        - `ir/ir.go`            — Intermediate Representation generation using parsed/typed values
+        - `codegen/codegen.go`  — code generation emitting assembly-like text from IR
+        - `asm/asm.go`          — assembler producing an object-file (bytes, symbols, section size)
+        - `linker/linker.go`    — linker emitting an executable (ELF64 entry, PHDR, sections)
+    • `examples/`
+        - `add.c`               — program to be compiled

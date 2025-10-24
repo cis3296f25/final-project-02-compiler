@@ -1,0 +1,30 @@
+%% Mermaid flowchart: Finished C compiler pipeline (top-down)
+flowchart TD
+    A[Source C file] --> B[Preprocessor]
+    B --> C[Lexer]
+    C --> D[Parser]
+    D --> E[AST builder]
+    E --> F[Semantic analysis]
+    F --> G[IR generation]
+    G --> H[Code generation]
+    H --> I[Assembler]
+    I --> J[Linker]
+    J --> K[Executable]
+
+    %% Grouping for clarity
+    subgraph Frontend
+        B
+        C
+        D
+        E
+        F
+    end
+    subgraph Middle_end[Middle-end]
+        G
+        H
+    end
+    subgraph Backend
+        I
+        J
+        K
+    end
